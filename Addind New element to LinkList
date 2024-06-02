@@ -1,0 +1,66 @@
+class LinkedList{
+	public static class Node{
+		int data;
+		Node next;
+		public Node(int data){
+			this.data =data;
+			this.next=null;
+		}
+	}
+	public static Node head;
+	public static Node tail;
+	public void addFirst(int data){
+		Node newNode=new Node(data);
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		//creating an Link
+		newNode.next=head;
+		//refer newNode as head
+		head=newNode;
+		
+	}
+	public void printLinkedList(){
+		if(head==null){
+			System.out.print("link list is Empty\n ");
+			return ;
+		}
+		Node temp=head;
+		while(temp!=null){
+			System.out.print(temp.data+"->");
+			temp=temp.next;
+		}
+		System.out.println("null"); 
+	}
+	public void addLast(int data){
+		Node newNode=new Node(data);
+		Node temp=head;
+		if(head==null){
+			head=tail=newNode;
+      return;
+		}
+		tail.next=newNode;
+    tail=newNode;
+	
+	}
+	public static void main(String args[]){
+		LinkedList obj1=new LinkedList();
+		obj1.addFirst(13);
+		obj1.addFirst(12);
+		obj1.addFirst(11);	
+		obj1.addFirst(10);
+		obj1.addLast(14);
+		obj1.printLinkedList();		
+		obj1.addLast(15);
+		obj1.addFirst(9);
+		obj1.printLinkedList();		
+		obj1.addFirst(8);
+		obj1.addLast(16);	
+		obj1.addLast(17);	
+		obj1.printLinkedList();	
+		System.out.println("Tail Data-->"+tail.data);
+		System.out.println("Head Data-->"+head.data);
+	}
+	 
+}
