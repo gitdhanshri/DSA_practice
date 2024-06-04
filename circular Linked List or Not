@@ -1,0 +1,74 @@
+class IsFormCycle{
+	public static class Node{
+		int data;
+		Node next;
+		public Node(int data){
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public static Node head;
+	public static Node tail;
+	public void addFirst(int data){
+		Node newNode=new Node(data);
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		newNode.next=head;
+		head=newNode;
+	}
+	void PrintLinkedList(){
+		if(head==null){
+			System.out.print("\n LL is Empty");
+			return;
+		}
+		Node temp=head;
+		while(temp!=null){
+			System.out.print(temp.data+" ");
+			temp=temp.next;
+		}
+		System.out.print("\n");
+	}
+	public Node findNode(){
+		Node temp=head;
+		Node slow=head;
+		Node fast=head;
+		while(fast!=null&&fast.next!=null){
+			slow=slow.next;
+			fast=fast.next.next;
+		}
+		return slow;//as Mid of Linklist	 
+	}
+	boolean isLinkedListformCycle(){
+		Node slow=head;
+		Node fast=head;
+		while(fast!=null&&fast.next!=null){
+			slow=slow.next;
+			fast=fast.next.next;
+			if(slow==fast){
+				return true;
+			}
+		}
+		return false;
+	}
+	public static void main(String args[]){
+		IsFormCycle obj1=new IsFormCycle();
+		obj1.addFirst(20);
+		obj1.addFirst(19);
+		obj1.addFirst(18);
+		obj1.addFirst(17);
+		obj1.addFirst(16);
+		obj1.addFirst(15);
+		obj1.addFirst(14);
+		obj1.addFirst(13);
+		obj1.addFirst(12);
+		obj1.addFirst(11);
+		obj1.PrintLinkedList();
+System.out.print("tail ka data "+tail.data+" \n");
+		tail.next=obj1.findNode();
+		//obj1.PrintLinkedList();
+		System.out.print("\nIs LL is Circular-??->"+obj1.isLinkedListformCycle());
+		
+	}
+}
