@@ -1,0 +1,90 @@
+class deleteGivenValue{
+	public static class Node{
+		int data;
+		Node next;
+		public Node(int data){
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public static Node head;
+	public static Node tail;
+	public void addFirst(int data){
+		Node newNode=new Node(data);
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		newNode.next=head;
+		head=newNode;
+	}
+	void PrintLinkedList(){
+		if(head==null){
+			System.out.print("\n LL is Empty");
+			return;
+		}
+		Node temp=head;
+		while(temp!=null){
+			System.out.print(temp.data+" ");
+			temp=temp.next;
+		}
+		System.out.print("\n");
+	}
+	void removeFromFirst(){
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		Node temp=head;
+		head=temp.next;
+	}
+	public void deleteGivenVal(Node head,int val){
+		if(head.data==val){
+			removeFromFirst();
+		}
+		Node prev=head;
+		Node curr=prev.next;
+		int size=0;
+		while(prev!=null){
+			size++;
+			prev=prev.next;
+			
+		}
+		//for(int i=1;i<size;i++){
+		while(curr!=null){
+			if(curr.data==val){	
+				if(curr.next==null){
+					prev.next=null;
+					return;
+				}
+				else{
+					curr=curr.next;
+					prev.next=curr;
+
+				}
+			}
+			else{
+				prev=curr;
+				curr=curr.next;
+			}
+			
+		}
+		
+	}
+	public static void main(String args[]){
+		deleteGivenValue obj1=new deleteGivenValue();
+		obj1.addFirst(14);
+		obj1.addFirst(14);
+		obj1.addFirst(14);
+		obj1.addFirst(14);
+		obj1.addFirst(34);
+		obj1.addFirst(13);
+		obj1.addFirst(14);
+		obj1.addFirst(16);
+		obj1.addFirst(14);
+		obj1.PrintLinkedList();
+		Node temp=head;
+		obj1.deleteGivenVal(temp,14);
+		obj1.PrintLinkedList();
+	}
+}
