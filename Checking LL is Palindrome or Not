@@ -1,0 +1,147 @@
+class IsPalindromeLL{
+	public static class Node{
+		int data;
+		Node next;
+		public Node(int data){
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public static Node head;
+	public static Node tail;
+	public static int size;
+	
+	void addAtFirst(int data){
+		Node newNode=new Node(data);
+		size++;
+		if(head==null){
+			head=newNode;
+			return;
+		}
+		//Node temp=head;
+		newNode.next=head;
+		head=newNode;
+	}
+	void addAtLast(int data){
+		Node newNode=new Node(data);
+		size++;
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		Node temp=head;
+		while(temp.next!=null){
+			temp=temp.next;
+		}
+		temp.next=newNode;
+		newNode.next=null;
+	}
+	void addInBetween2Nodes(int index,int data){
+		if(index==0){
+			addAtFirst(12);
+			return;
+		}
+		Node newNode=new Node(data);
+		size++;
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		Node temp=head;
+		int i=0;
+		while(i<(index-1)){
+			temp=temp.next;
+			i++;
+		}
+		newNode.next=temp.next;
+		temp.next=newNode;
+	}
+	void printLinkedList(){
+		System.out.print("\nRequired LL----->:  ");
+		if(size==0){
+			System.out.println("  length of LL  Zero");
+			return;
+		}
+		Node temp=head;
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		while(temp!=null){
+			System.out.print(temp.data+"  ");
+			temp=temp.next;
+		}
+	
+		
+	}
+	void removeFromFirst(){
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		Node temp=head;
+		head=temp.next;
+		size--;
+	}
+	public Node findMidNode(Node head){
+	        Node slow=head;
+	        Node fast=head;
+	        Node mid;
+	        while(fast!=null&&(fast.next!=null)){
+	                slow=slow.next;
+	                fast=fast.next.next;
+	        }
+	        mid=slow;
+	        System.out.print("\nMid data-->"+mid.data);
+	       return mid;
+	        
+	}
+	public boolean isPalindrome(){
+		if(head==null||head.next==null){
+			System.out.print("\n LL is Palindrome");
+			return true;
+		}
+		//Step 1:find mid
+		Node mid=findMidNode(head);
+		//step-2:revese second half
+		Node prev=null;
+		Node curr=mid;
+		Node nxt;
+		while(curr!=null){
+			nxt=curr.next;
+			curr.next=prev;
+			prev=curr;
+			curr=nxt;
+		}
+		Node right=prev;
+		//Step3- check left half data& right half data
+		while(right!=null){
+			if(head.data!=right.data){
+			System.out.print("\n LL is Not  Palindrome");
+				return false;
+			}
+			head=head.next;
+			right=right.next;
+		}
+		System.out.print("\n LL is Palindrome");
+		return true;
+	}
+	public static void main(String args[]){
+		IsPalindromeLL obj1=new IsPalindromeLL();
+		obj1.addAtFirst(11);
+		obj1.addAtFirst(10);
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(8);
+		obj1.addAtLast(10);
+		obj1.addAtLast(9);
+		obj1.addAtLast(8);
+		obj1.printLinkedList();	
+		obj1.isPalindrome();
+		
+		obj1.addAtLast(7);
+		obj1.addAtLast(8);
+		obj1.printLinkedList();	
+		obj1.isPalindrome();
+	}
+}
+
