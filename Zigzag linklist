@@ -1,0 +1,98 @@
+class Zigzag{
+	public static class Node{
+		int data;
+		Node next;
+		public Node(int data){
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public static Node head;
+	public static Node tail;
+	public static int size;
+	
+	void addAtFirst(int data){
+		Node newNode=new Node(data);
+		size++;
+		if(head==null){
+			head=newNode;
+			return;
+		}
+		//Node temp=head;
+		newNode.next=head;
+		head=newNode;
+	}
+	void printLinkedList(){
+		System.out.print("\nRequired LL----->:  ");
+		if(size==0){
+			System.out.println("  length of LL  Zero");
+			return;
+		}
+		Node temp=head;
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		while(temp!=null){
+			System.out.print(temp.data+"  ");
+			temp=temp.next;
+		}
+		System.out.print("\n");	
+		
+	}
+	public static Node  findMid(){
+		Node slow=head;
+		Node fast=head;
+		while(fast!=null&&fast.next!=null){
+			slow=slow.next;
+			fast=fast.next.next;
+		}
+		//System.out.print("\n Mid is-->"+slow.data+"\n");
+		return slow;//as mid
+	}
+	public static void reverseHalfLink(){
+		Node mid=findMid();
+		/*Node temp=head;
+		Node num=head;
+
+		while(temp!=mid){
+			num=head;
+			head=head.next;
+		}
+		num.next=null;
+
+		*/
+		Node prev=null;
+		Node curr=mid;
+		Node nxt;
+		while(curr!=null){
+			nxt=curr.next;
+			curr.next=prev;
+			prev=curr;
+			curr=nxt;
+		}
+		
+		System.out.println("Second half ll\n");
+		Node nas=mid;
+		while(nas!=null){
+			System.out.print(nas.data+", ");
+			nas=nas.next;
+		}	
+			
+		System.out.println("Second half ll end\n");			
+	}
+	public static void main(String args[]){
+		Zigzag obj1=new Zigzag();
+		obj1.addAtFirst(11);
+		obj1.addAtFirst(10);
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(81);
+		obj1.addAtFirst(92);
+		obj1.addAtFirst(80);
+		obj1.printLinkedList();
+		//findMid();
+		reverseHalfLink();	
+		obj1.printLinkedList();
+	}
+}
+
