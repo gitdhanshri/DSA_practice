@@ -1,0 +1,45 @@
+class Sort2{
+	void bubbleSortArray(int[] arr){
+		for(int i=0;i<arr.length;i++){
+			for(int j=0;j<arr.length-1;j++){
+				if(arr[j]>arr[j+1]){
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+	}
+	void selctnSortArray(int[] arr){
+		for(int i=0;i<arr.length;i++){
+			int min=i;
+			for(int j=i;j<arr.length-1;j++){
+				if(arr[j+1]<arr[min]){
+					min=j+1;
+				}
+			}
+			int temp=arr[i];
+			arr[i]=arr[min];
+			arr[min]=temp;
+		}
+		
+	}
+	void insertionSort(int[] arr){
+		
+	}
+	void PrintArray(int[] arr){
+		for(int i=0;i<arr.length;i++){
+			System.out.print(arr[i]+" ");
+		}
+		System.out.print("-------\n");
+	}
+	public static void main(String args[]){
+		Sort2 obj1=new Sort2();
+		int arr[]={2,1,7,4,5,6,6,6,9,8,1};
+		obj1.PrintArray(arr);
+		//obj1.bubbleSortArray(arr);
+		obj1.selctnSortArray(arr);
+		//int res[]=obj1.SortArray(arr);
+		obj1.PrintArray(arr);
+	}
+}
