@@ -1,0 +1,23 @@
+import java.util.*;
+class Demo{
+	void swaptwoNumbers(ArrayList<Integer> list,int m,int n){
+		int temp=list.get(n);
+		list.set(n,list.get(m));
+		list.set(m,temp);
+	}
+	public static void main(String args[]){
+		Demo obj1=new Demo();
+		ArrayList<Integer> list=new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(313);
+		list.add(24);
+		list.add(53);
+		list.add(61);
+		list.add(7);
+		System.out.println(list);
+		obj1.swaptwoNumbers(list,2,4);
+		System.out.println("\nArrayList After Swapping-->\n"+(list));
+	}
+	
+}
