@@ -1,0 +1,44 @@
+import java.util.*;
+class Demo{
+	void printMultiDimensionalArray(){
+		ArrayList<ArrayList<Integer>> mainList=new ArrayList<>();
+		System.out.println("First Way to print Multi-Dimensional Array\n"+mainList);
+		ArrayList<Integer> list1=new ArrayList<>();
+		list1.add(1);list1.add(2);list1.add(3);list1.add(4);
+		mainList.add(list1);
+		
+		ArrayList<Integer> list2=new ArrayList<>();
+		list2.add(2);list2.add(4);list2.add(6);list2.add(8);
+		mainList.add(list2);
+		
+		ArrayList<Integer> list3=new ArrayList<>();
+		list3.add(3);list3.add(6);list3.add(9);list3.add(12);
+		mainList.add(list3);
+		
+		for(int i=0;i<mainList.size();i++){
+			ArrayList<Integer> list=mainList.get(i);
+			for(int j=0;j<list.size();j++){
+				System.out.print(list.get(j)+" ");
+			}
+			System.out.println("");
+		}
+		//
+		System.out.println("Second Way to print Multi-Dimensional Array\n"+mainList);
+	}
+	public static void main(String args[]){
+		Demo obj1=new Demo();
+		ArrayList<Integer> list=new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(313);
+		list.add(24);
+		list.add(53);
+		list.add(61);
+		list.add(7);
+		//System.out.println(list);
+		obj1.printMultiDimensionalArray();
+		System.out.println("\n\n");
+		//System.out.println(list);
+	}
+	
+}
