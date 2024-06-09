@@ -1,0 +1,82 @@
+import java.util.*;
+class Demo{
+	void printAllSubArrays(ArrayList<Integer> list){
+		for(int i=0;i<(list.size()-1);i++){
+			for(int j=i+1;j<list.size();j++){
+				System.out.print("("+list.get(i)+","+list.get(j)+")"+"  ");
+			}
+			System.out.println();
+		}
+	}
+	int minFind(int a,int b){
+		if(a<b){
+			return a;
+		}
+		else{
+			return b;
+		}
+	}
+	void find2IndexThatContainMaxWater(ArrayList<Integer> list){
+		int max=Integer.MIN_VALUE;
+		int index1=0;
+		int index2=0;
+		for(int i=0;i<(list.size()-1);i++){
+			for(int j=i+1;j<list.size();j++){
+				int min=Math.min(list.get(i),list.get(j));
+				int diff=j-i;
+				int water=min*diff;
+				if(max<water){
+					max=water;
+					 index1=i;
+					index2=j;
+				}
+			}
+		}
+		System.out.println("\nMaximum Water can be contain-->"+max);
+		System.out.println("Their indices are "+"("+index1+","+index2+")");
+	}
+	
+	void ContainMaxWater(ArrayList<Integer> list){
+		int max=Integer.MIN_VALUE;
+		int index1=0;
+		int index2=0;
+		int start=0;
+		int end=list.size()-1;
+		int water=0;
+		while(start<end){
+			int height=Math.min(list.get(start),list.get(end));
+			int diff=end-start;
+			//index1=start+1;
+			//index2=end-1;
+			water=Math.max(water,height*diff);
+
+			if(list.get(start)<list.get(end)){
+				start++;
+				index1=start;
+			}
+			else /*if(list.get(start)>list.get(end))*/{
+				end--;	
+				index2=end;
+			}
+		}
+		System.out.println("\nMaximum Water can be contain-->"+water+"\n");
+		//System.out.println("Their indices are "+"("+start+","+end+")");
+	}
+	public static void main(String args[]){
+		Demo obj1=new Demo();
+		ArrayList<Integer> list=new ArrayList<>();
+		list.add(1);
+		list.add(8);
+		list.add(6);
+		list.add(2);
+		list.add(5);
+		list.add(4);
+		list.add(8);
+		list.add(3);
+		list.add(7);
+		System.out.println(list);
+		obj1.find2IndexThatContainMaxWater(list);
+		obj1.ContainMaxWater(list);
+	}
+	
+}
