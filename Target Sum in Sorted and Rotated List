@@ -1,0 +1,44 @@
+import java.util.*;
+class Demo{
+	boolean maxPairSum_using2PointerApproach(ArrayList<Integer> list,int target){
+		int pivot=0;
+		System.out.println("size of list-->"+list.size());
+		for(int i=0;i<list.size();i++){
+			if(list.get(i)>list.get(i+1)){
+				pivot=i;
+				break;
+			}
+		}
+		int n=list.size();
+		int start=pivot+1;
+		int end=pivot;
+		while(start!=end){
+			if((list.get(start)+list.get(end))==target){
+				return true;
+			}
+			if((list.get(start)+list.get(end))<target)
+				start=(start+1)%n;
+
+				
+			else  /*if((list.get(start)+list.get(end))<target)*/{
+				end=(end+n-1)%n;
+			}
+		}
+		return false;
+	}
+	public static void main(String args[]){
+		Demo obj1=new Demo();
+		ArrayList<Integer> list2=new ArrayList<>();
+		list2.add(11);
+		list2.add(15);
+		list2.add(6);
+		list2.add(8);
+		list2.add(9);
+		list2.add(10);
+		System.out.println(list2);
+		//obj1.maxPairSum(list2);
+	//obj1.maxPairSum_using2PointerApproach(list2,16);
+	System.out.println(obj1.maxPairSum_using2PointerApproach(list2,16));
+	}
+	
+}
