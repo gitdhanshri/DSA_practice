@@ -1,0 +1,37 @@
+import java.util.*;
+class Demo{
+	boolean maxPairSum_using2PointerApproach(ArrayList<Integer> list,int target){
+		int start=0;
+		int end=list.size()-1;
+		int sum=Integer.MIN_VALUE;
+		while(start<end){
+			 sum=(list.get(start)+list.get(end));
+			 if(sum==target){
+			 	System.out.println("Indices are-->"+"("+start+","+end+")");
+		System.out.println("Target Pair Sum found-->"+sum);
+			 	return true;
+			 }
+			 else if(sum>target){
+			 	end--;
+			 }
+			 else if(sum<target){
+			 	start++;
+			 }	
+		}
+		return false;
+	}
+	public static void main(String args[]){
+		Demo obj1=new Demo();
+		ArrayList<Integer> list2=new ArrayList<>();
+		list2.add(1);
+		list2.add(2);
+		list2.add(3);
+		list2.add(5);
+		list2.add(6);
+		list2.add(7);
+		System.out.println(list2);
+		//obj1.maxPairSum(list2);
+		System.out.println(obj1.maxPairSum_using2PointerApproach(list2,9));
+	}
+	
+}
