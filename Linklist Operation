@@ -1,0 +1,76 @@
+public class remodeFirstNode {
+    public static class Node{
+            int data;Node next;
+            public Node (int data) {
+                this.data = data;
+                this.next = null;
+            }
+    }
+    public static Node head;public static Node tail;
+    Node addNewElement(int data){
+        Node newNode=new Node(data);
+        if(head==null) {
+            head = tail = newNode;
+            return head;
+        }
+            newNode.next = head;
+            head = newNode;
+        return head;
+    }
+    void printLinkList() {
+        Node temp = head;
+        if (temp==null) {
+            System.out.println("\nEmpty Ll");
+            return;
+        }while (temp!= null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+    Node  deleteFirstNode(){
+            if(head==null){
+                System.out.println("LL is Empty");
+                return null;
+            }
+            head=head.next;
+            return head;
+    }
+    Node deleteLast(){
+        Node prev=null;
+        Node temp=head;
+        if(temp==null){
+            return null;
+        }
+        if(temp.next==null){
+            head=null;
+            return head;
+        }
+        if(temp!=null) {
+                while (temp.next != null) {
+                    prev = temp;
+                    temp = temp.next;
+                }
+                prev.next = null;
+//        System.out.println("\nprev data-->"+prev.data);
+//        System.out.println("temp data-->"+temp.data);
+        }
+        return temp;
+    }
+    public static void main(String args[]){
+          //  System.out.println("\nNewly created Linklist");
+            remodeFirstNode obj1=new remodeFirstNode();
+          //  obj1.addNewElement(9);
+            obj1.addNewElement(8);
+            obj1.addNewElement(7);
+            obj1.addNewElement(6);
+            obj1.addNewElement(5);
+             obj1.printLinkList();
+             obj1.deleteFirstNode();
+             System.out.println("\nAfter Removal of First Node");
+            obj1.printLinkList();
+            obj1.deleteLast();
+            System.out.println("\nAfter Removal of Last Node");
+            obj1.printLinkList();
+
+    }
+}
