@@ -1,0 +1,85 @@
+class IsPalindromeLL{
+	public static class Node{
+		int data;
+		Node next;
+		public Node(int data){
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public static Node head;
+	public static Node tail;
+	public static int size;
+	
+	void addAtFirst(int data){
+		Node newNode=new Node(data);
+		size++;
+		if(head==null){
+			head=newNode;
+			return;
+		}
+		//Node temp=head;
+		newNode.next=head;
+		head=newNode;
+	}
+	void printLinkedList(){
+		System.out.print("\nRequired LL----->:  ");
+		if(size==0){
+			System.out.println("  length of LL  Zero");
+			return;
+		}
+		Node temp=head;
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		while(temp!=null){
+			System.out.print(temp.data+"  ");
+			temp=temp.next;
+		}	
+	}
+	public static boolean isPalindromeLL(){
+		//step 1:find mid
+		Node slow=head;
+		Node fast=head;
+		while(fast!=null&&fast.next!=null){
+			slow=slow.next;
+			fast=fast.next.next;
+		}
+		Node mid=slow;		
+		//step-2 Reversing second half
+		Node prev=null;
+		Node curr=mid;
+		Node nxt;
+		while(curr!=null){
+			nxt=curr.next;
+			curr.next=prev;
+			prev=curr;
+			curr=nxt;
+		}
+		Node rightHead=prev;
+		Node lefthead=head;
+		//step 3:Comparing first half & second Half
+		while(lefthead!=null&&rightHead!=null){
+			if(lefthead.data!=rightHead.data){
+				return false;
+			}
+			rightHead=rightHead.next;
+			lefthead=lefthead.next;
+		}
+		return true;
+	} 
+	public static void main(String args[]){
+		IsPalindromeLL obj1=new IsPalindromeLL();
+		//obj1.addAtFirst(11);
+		obj1.addAtFirst(10);
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(8);
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(10);
+		//obj1.addAtFirst(11);
+		//obj1.printLinkedList();	
+		System.out.println(isPalindromeLL());
+		System.out.println("\n");
+	}
+}
