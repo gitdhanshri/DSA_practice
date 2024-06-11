@@ -1,0 +1,86 @@
+class deleteKthNode{
+	public static class Node{
+		int data;
+		Node next;
+		public Node(int data){
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public static Node head;
+	public static Node tail;
+	public void addFirst(int data){
+		Node newNode=new Node(data);
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		newNode.next=head;
+		head=newNode;
+	}
+	void PrintLinkedList(){
+		if(head==null){
+			System.out.print("\n LL is Empty");
+			return;
+		}
+		Node temp=head;
+		while(temp!=null){
+			System.out.print(temp.data+" ");
+			temp=temp.next;
+		}
+		System.out.print("\n");
+	}
+	Node deleteKthNode(Node head,int n){
+		Node prev=null;
+		Node temp=head;
+		int size=0;
+		while(temp!=null){
+			size++;
+			temp=temp.next;
+		}
+		 temp=head;
+		int i=1;
+		if(head==null){
+			return null;
+		}
+		
+		while(i<=size){
+			if(n==1&&head!=null){
+				head=head.next;	
+			}
+			else if(i%n==0){
+				prev.next=temp.next;
+				temp=temp.next;
+			}
+			else{
+				prev=temp;
+				temp=temp.next;
+			}
+			i++;
+		}
+		return head;
+	}
+	public static void main(String args[]){
+		deleteKthNode obj1=new deleteKthNode();
+		/*obj1.addFirst(17);
+		obj1.addFirst(16);
+		obj1.addFirst(15);
+		obj1.addFirst(14);*/
+		obj1.addFirst(13);
+		obj1.addFirst(12);
+		obj1.addFirst(11);
+		obj1.addFirst(10);
+		obj1.addFirst(9);
+		obj1.addFirst(8);
+		obj1.addFirst(7);
+		obj1.addFirst(6);
+		obj1.addFirst(5);
+		obj1.addFirst(4);
+		obj1.addFirst(3);
+		obj1.addFirst(2);
+		obj1.addFirst(1);
+		obj1.PrintLinkedList();
+		obj1.deleteKthNode(head,2);
+		obj1.PrintLinkedList();
+	}
+}
