@@ -1,0 +1,67 @@
+class RotateLLbyK{
+    public static class Node {
+        int data;
+        Node next;
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public static Node head;
+    public static Node tail;
+
+    Node addNewElement(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            return head;
+        }
+        newNode.next = head;
+        head = newNode;
+        return head;
+    }
+
+    void printLinkList(Node head){
+		Node temp = head;
+		if (temp == null) {
+		    System.out.println("\nEmpty LinkedList");
+		    return;
+		}
+		while (temp != null) {
+		    System.out.print(temp.data + " ");
+		    temp = temp.next;
+		}
+		System.out.println();
+       }
+      Node  rotateByk(int k){
+    	int i=1;
+    	if(head==null){
+    		return null;
+    	}
+    	if(head.next==null){
+    		return head;
+    	}
+    	while(i<=k){
+    		int data=head.data;
+    		head=head.next;
+    		Node newNode=new Node(data);
+    		tail.next=newNode;
+    		newNode.next=null;
+    		tail=newNode;
+    		i++;
+    	}
+    	return head;
+    }
+    public static void main(String[] args) {
+        RotateLLbyK obj1 = new RotateLLbyK();
+        obj1.addNewElement(5);
+        obj1.addNewElement(4);
+        obj1.addNewElement(3);
+        obj1.addNewElement(2);
+        obj1.addNewElement(1);
+        obj1.printLinkList(head);
+     	obj1.rotateByk(2);
+        obj1.printLinkList(head);
+    }
+ }
