@@ -1,0 +1,58 @@
+class SortLinkList{
+	public static class Node{
+		int data;
+		Node next;
+		Node prev;
+		public Node(int data){
+			this.data=data;
+			this.next=null;
+			this.prev=null;
+		}
+	}
+	public static Node head;
+	public static Node tail;
+	public static int size=0;	
+	Node addNewElementInLL(int data){
+		Node newNode=new Node(data);
+		size++;
+		if(head==null){
+			head=tail=newNode;
+			head.next=null;
+			head.prev=null;
+			return head;
+		}
+		newNode.next=head;
+		head.prev=newNode;
+		newNode.prev=null;
+		head=newNode;
+		return head;
+	}
+	void printLinkedList(){
+		System.out.print("\nRequired LL----->:  ");
+		if(size==0){
+			System.out.println("  length of LL  Zero");
+			return;
+		}
+		Node temp=head;
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		temp=tail;
+		while(temp!=null){
+			System.out.print(temp.data+"  ");
+			temp=temp.prev;
+		}	
+		System.out.println("\n");
+	}
+	public static void main(String args[]){
+		SortLinkList obj1=new SortLinkList();
+		obj1.addNewElementInLL(6);
+		obj1.addNewElementInLL(5);
+		obj1.addNewElementInLL(4);
+		obj1.addNewElementInLL(3);
+		obj1.addNewElementInLL(2);
+		obj1.addNewElementInLL(1);
+		obj1.printLinkedList();
+	}
+}
