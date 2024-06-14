@@ -1,0 +1,53 @@
+class demo{
+	int maxSum(int[] arr){
+		int sum=Integer.MIN_VALUE;
+		for(int i=0;i<arr.length;i++){
+			for(int j=i;j<arr.length;j++){
+				System.out.print("[");
+				int newSum=0;
+				int k=i;
+				while(k<arr.length-j+i){
+					 System.out.print(arr[k]+",");
+					 newSum+=arr[k];
+					k++;
+				}
+				System.out.print("--->sum->  "+newSum);
+				System.out.print("]\n");
+				if(sum<newSum){
+					sum=newSum;
+				}
+			}
+			System.out.print("\n");
+		}
+		return sum;
+	}
+	int maxSum_M2(int[] arr){
+		int sum=Integer.MIN_VALUE;
+		for(int i=0;i<arr.length;i++){
+			for(int j=i;j<arr.length;j++){
+				System.out.print("[");
+				int newSum=0;
+				int k=i;
+				while(k<arr.length-j+i){
+					 System.out.print(arr[k]+",");
+					 newSum+=arr[k];
+					k++;
+				}
+				System.out.print("--->sum->  "+newSum);
+				System.out.print("]\n");
+				if(sum<newSum){
+					sum=newSum;
+				}
+			}
+			System.out.print("\n");
+		}
+		return sum;
+		
+   }
+public static void main(String args[]){
+	demo obj1=new demo();
+	int arr[]={};
+	//obj1.maxSum(arr);
+	System.out.println("Max sum is-->"+obj1.maxSum(arr));
+	}
+}
