@@ -1,0 +1,30 @@
+class Sample{
+	 int[] CountStockSpan(int[] arr){
+		int res[]=new int[arr.length];
+		for(int i=0;i<arr.length;i++){
+			for(int j=i;j>=0;j--){
+				if(arr[j]>arr[i]){
+					break;
+				}
+				if(arr[j]<=arr[i]){
+					res[i]++;
+				}
+			}
+		}
+		return res;
+	}
+	void printArray(int[] arr){
+		System.out.print("[");
+		for(int i=0;i<arr.length;i++){
+			System.out.print(arr[i]+" ");
+		}
+		System.out.print("]\n");
+	}
+	public static void main(String args[]){
+		Sample s1=new Sample();
+		int arr[]={100,80,110,70,60,75,85};
+		s1.printArray(arr);
+		int res[]=s1.CountStockSpan(arr);
+		s1.printArray(res);
+	}
+}
