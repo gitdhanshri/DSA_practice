@@ -1,0 +1,74 @@
+class Stack{
+	static final int size=10;
+	int arr[]=new int[size];
+	int top;
+	public Stack(){
+		top=-1;
+	}
+	boolean isEmptyStack(){
+		if(top==-1){
+			return true;
+		}
+		return false;
+	}
+	void pushNewElement(int x){
+		if(top==size){
+		System.out.println("Stack overFlow");
+			return ;
+		}
+		else{
+			arr[++top]=x;
+		}
+	}
+	int peek(){
+		if(top==-1){
+			return 0;
+		}
+		else{
+			int a=arr[top];
+			return a;
+		}
+
+
+	}
+	int pop(){
+		//		int a=arr[top];
+		if(top==-1){
+			System.out.println("Stack is Empty");
+			return 0;	
+		}
+		else{
+			int a=arr[top];
+			top--;
+			return a;
+		}
+
+	}
+	 void PrintStack(){
+	 	System.out.print("[");
+	 	for(int i=top;i>-1;i--){
+	 		System.out.print(arr[i]+"  ");
+	 	}
+	 	System.out.print("]\n");
+	 }
+}
+class Access{
+	public static void main(String args[]){
+		Stack s=new Stack();
+		//System.out.println("is Empty stack-->"+s.isEmptyStack());
+		System.out.println("Peek Element-->"+s.peek());
+		s.pushNewElement(1);
+		s.pushNewElement(2);
+		s.pushNewElement(3);
+		System.out.println("Peek Element-->"+s.peek());
+		s.pushNewElement(4);
+		s.pushNewElement(5);
+		s.pushNewElement(6);
+		s.pushNewElement(7);
+		System.out.println("Peek Element-->"+s.peek());
+		s.PrintStack();
+		s.pop();
+		s.pop();
+		s.PrintStack();
+	}
+}
