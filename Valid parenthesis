@@ -1,0 +1,47 @@
+import java.util.Stack;
+class ValidParenthesis{
+	void printArray(int arr[]){
+		for(int i=0;i<arr.length;i++){
+			System.out.print(arr[i]+"  ");
+		}
+		System.out.println("");
+	}
+	boolean isValidParenthesis(String s){
+		Stack<Character> stak=new Stack<Character>();
+		boolean res=false;
+		for(int i=0;i<s.length();i++){
+			char c=s.charAt(i);
+			//opening braces
+			if(c=='('||c=='{'||c=='['){
+				stak.push(c);
+				//break;
+			}
+			else{
+				if(stak.empty()){
+			System.out.println("Stack is-->  "+stak);
+					return false;
+				}
+				if((stak.peek()=='('&&c==')')||(stak.peek()=='{'&&c=='}')||(stak.peek()=='['&&c==']')){
+									stak.pop();
+					
+				}
+				else{
+			System.out.println("Stack is-->  "+stak);
+					return false;	
+				}
+		
+			}
+		}
+		if(!stak.empty()){
+			return false;
+		}
+		System.out.println("Stack is-->  "+stak);
+		return true;
+	}
+	public static void main(String args[]){
+		ValidParenthesis obj1=new ValidParenthesis();
+		String s="{}}}}}";
+		boolean res=obj1.isValidParenthesis(s);
+		System.out.println("Result-->"+res);
+	}
+}
