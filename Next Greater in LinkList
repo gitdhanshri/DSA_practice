@@ -1,0 +1,104 @@
+import java.util.*;
+class NextGreaterNode{
+	public static class ListNode{
+		int val;
+		ListNode next;
+		public ListNode(int data){
+			this.val=data;
+	  		this.next=null;
+		}
+	}
+	public static ListNode head;
+	public static ListNode tail;
+	public static int size;	
+	void addAtFirst(int data){
+		ListNode newNode=new ListNode(data);
+		size++;
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		newNode.next=head;
+		head=newNode;
+	}
+	void printLinkedList(ListNode head){
+		System.out.print("\nRequired LL----->:  ");
+		if(size==0){
+			System.out.println("  length of LL  Zero");
+			return;
+		}
+		ListNode temp=head;
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		while(temp!=null){
+			System.out.print(temp.val+"  ");
+			temp=temp.next;
+		}
+		System.out.println();
+	}
+	 ListNode reverSeLL(ListNode head){
+  	  	if(head==null||head.next==null){
+  	  		return head;
+  	  	}
+  	  	ListNode prev=null;
+  	  	ListNode curr=head;
+  	  	ListNode nxt;
+  	  	while(curr!=null){
+  	  		nxt=curr.next;
+  	  		curr.next=prev;
+  	  		prev=curr;
+  	  		curr=nxt;
+  	  	}
+  	  	return prev;
+  	  }
+	 public int[] nextLargerRightNodes(ListNode head) {
+     	       ListNode temp=head;
+     	      // System.out.print(" head--1-> "+temp.val+"  ");
+	        int length=0;
+	        while(temp!=null){
+		   length++;
+		   temp=temp.next;
+	        }
+	        Stack<Integer> s=new Stack<Integer>();
+	        int[] nextGreater=new int[length];
+	        temp=reverSeLL(head);
+	     //  System.out.println("\nlhead--2--->"+temp.val+"\n"); 
+	         for(int i=length-1;i>=0;i--){
+		  	if(temp!=null){
+				while(!s.empty()&&temp.val>=s.peek()){
+					s.pop();
+				}
+				if(s.empty()){
+					nextGreater[i]=-1;
+				}
+				else{
+					nextGreater[i]=s.peek();
+				}
+				s.push(temp.val);
+			  	temp=temp.next;
+			}
+	     }
+		System.out.println("resulatant Array-->");
+		for(int  i=0;i<nextGreater.length;i++){
+			System.out.print(nextGreater[i]+" ");
+		}	
+		System.out.println();
+		return nextGreater;
+  	  }
+	public static void main(String args[]){
+               		NextGreaterNode obj1=new NextGreaterNode();
+		obj1.addAtFirst(5);
+		obj1.addAtFirst(3);
+		obj1.addAtFirst(4);
+		obj1.addAtFirst(7);
+		obj1.addAtFirst(2);
+		obj1.printLinkedList(head);
+		//ListNode newHead= obj1.reverSeLL(head);
+		//obj1.printLinkedList(newHead);
+		obj1.nextLargerRightNodes(head);
+		
+	}
+}
+
