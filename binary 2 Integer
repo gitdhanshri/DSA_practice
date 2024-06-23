@@ -1,0 +1,103 @@
+class Binary2Integer{
+	public static class ListNode{
+		int val;
+		ListNode next;
+		public ListNode(int data){
+			this.val=data;
+			this.next=null;
+		}
+	}
+	public static ListNode head;
+	public static ListNode tail;
+	public static int size;
+	
+	void addAtFirst(int data){
+		ListNode newNode=new ListNode(data);
+		size++;
+		if(head==null){
+			head=newNode;
+			return;
+		}
+		newNode.next=head;
+		head=newNode;
+	}
+	void addAtLast(int data){
+		ListNode newNode=new ListNode(data);
+		size++;
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		ListNode temp=head;
+		while(temp.next!=null){
+			temp=temp.next;
+		}
+		temp.next=newNode;
+		newNode.next=null;
+	}
+	void addInBetween2Nodes(int index,int data){
+		if(index==0){
+			addAtFirst(12);
+			return;
+		}
+		ListNode newNode=new ListNode(data);
+		size++;
+		if(head==null){
+			head=tail=newNode;
+			return;
+		}
+		ListNode temp=head;
+		int i=0;
+		while(i<(index-1)){
+			temp=temp.next;
+			i++;
+		}
+		newNode.next=temp.next;
+		temp.next=newNode;
+	}
+	void printLinkedList(ListNode head){
+		System.out.print("\nRequired LL----->:  ");
+		if(size==0){
+			System.out.println("  length of LL  Zero");
+			return;
+		}
+		ListNode temp=head;
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		while(temp!=null){
+			System.out.print(temp.val+"  ");
+			temp=temp.next;
+		}
+		System.out.print("\n");	
+	}
+	int conver2BinaryResult(ListNode head){
+		ListNode temp=head;
+		int length=0;
+		while(temp!=null){
+			length++;
+			temp=temp.next;
+		}
+		temp=head;
+		int i=length-1,sum=0;
+		while(i>=0){
+			int data=temp.val;
+			int p=(int)(Math.pow(2,i));
+			sum=sum+data*p;
+			temp=temp.next;
+			i--;
+		}
+		return sum;
+	}
+	public static void main(String args[]){
+		Binary2Integer obj1=new Binary2Integer();
+
+			obj1.addAtFirst(1);
+			obj1.addAtFirst(1);
+			obj1.addAtFirst(1);
+			obj1.printLinkedList(head);	
+			int res=obj1.conver2BinaryResult(head);
+			System.out.println("res is--->"+res);
+	}
+}
