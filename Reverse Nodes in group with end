@@ -1,0 +1,199 @@
+class IsPalindromeLL{
+	public static class ListNode{
+		int val;
+		ListNode next;
+		public ListNode(int data){
+			this.val=data;
+			this.next=null;
+		}
+	}
+	public static ListNode head;
+	public static ListNode tail;
+	public static int size;
+	
+	void addAtFirst(int data){
+		ListNode newNode=new ListNode(data);
+		size++;
+		if(head==null){
+			head=newNode;
+			return;
+		}
+		newNode.next=head;
+		head=newNode;
+	}
+	void printLinkedList(ListNode head){
+		System.out.print("\nRequired LL----->:  ");
+		if(size==0){
+			System.out.println("  length of LL  Zero");
+			return;
+		}
+		ListNode temp=head;
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		while(temp!=null){
+			System.out.print(temp.val+" ");
+			temp=temp.next;
+		}
+		System.out.print("\n");	
+	}
+	//for one Group
+	ListNode reverse(ListNode head,int k ){
+		int length=0;
+		ListNode sam=head;
+		while(sam!=null){
+			length++;
+			sam=sam.next;
+		}
+		int i=0;
+		ListNode first=head;
+		ListNode second=head.next;
+		ListNode prev=head;
+		ListNode curr=head.next;
+		ListNode nxt;
+		while(i<k){
+			nxt=curr.next;
+			curr.next=prev;
+			prev=curr;
+			curr=nxt;
+			i++;
+
+		}
+		ListNode third=prev;
+		ListNode fourth=curr;
+		first.next=third;
+		second.next=fourth;
+		return head;
+	}
+	ListNode reverseOfLargeValOfK(ListNode head,int k ){
+		int length=0;
+		ListNode sam=head;
+		while(sam!=null){
+			length++;
+			sam=sam.next;
+		}
+		ListNode newNode= new ListNode(101);
+		newNode.next=head;
+		head=newNode;
+		int timesOF_loop=length/k;
+		ListNode first=head;
+		ListNode second=head.next;
+		ListNode prev=first;
+		for(int i=0;i<timesOF_loop;i++){
+			
+			ListNode curr=second;
+			ListNode nxt;
+			int j=0;
+			while(j<k){
+				nxt=curr.next;
+				curr.next=prev;
+				prev=curr;
+				curr=nxt;
+				j++;
+			}
+			ListNode third=prev;
+			first.next=third;
+			ListNode fourth=curr;
+			second.next=fourth;
+			first=second;
+			second=curr;	
+		}
+		//System.out.println("Thirst data-->"+prev.val);
+		printLinkedList(head.next);	
+		//System.out.println("First data-->"+first.val);
+		//System.out.println("Second data-->"+second.val);
+		ListNode pre=null;
+		ListNode curr=second;
+		//System.out.println("Currernt data-->"+curr.val);
+		ListNode nxt;
+		while(curr!=null){
+			nxt=curr.next;
+			curr.next=pre;
+			pre=curr;
+			curr=nxt;
+		}
+		//System.out.println("Prev data-->"+prev.val);
+		first.next=pre;
+		return head.next;
+	}
+	ListNode reveseRemaing(ListNode head,int k ){
+		int length=0;
+		ListNode sam=head;
+		while(sam!=null){
+			length++;
+			sam=sam.next;
+		}
+		ListNode temp=head;
+		int count=length%k;
+		int i=0;
+		while(i<count){
+			i++;
+			temp=temp.next;
+		}
+		
+		System.out.println("Temp data-->"+temp.val);
+		ListNode pre=null;
+		ListNode curr=temp.next;
+		ListNode nxt;
+		while(curr!=null){
+			nxt=curr.next;
+			curr.next=pre;
+			pre=curr;
+			curr=nxt;
+		}
+		System.out.println("Temp data-->"+temp.val);
+		temp.next=pre;
+		return head;
+	
+	}
+	ListNode reverseMultipleGroup(ListNode head,int k ){
+		int length=0;
+		ListNode sam=head;
+		while(sam!=null){
+			length++;
+			sam=sam.next;
+		}
+		ListNode newNode= new ListNode(101);
+		newNode.next=head;
+		head=newNode;
+		int timesOF_loop=length/k;
+		ListNode first=head;
+		ListNode second=head.next;	
+		for(int i=0;i<timesOF_loop;i++){
+			ListNode prev=first;
+			ListNode curr=second;
+			ListNode nxt;
+			int j=0;
+			while(j<k){
+				nxt=curr.next;
+				curr.next=prev;
+				prev=curr;
+				curr=nxt;
+				j++;
+			}
+			ListNode third=prev;
+			first.next=third;
+			ListNode fourth=curr;
+			second.next=fourth;
+			first=second;
+			second=curr;	
+		}
+		
+		return head.next;
+	}
+	public static void main(String args[]){
+		IsPalindromeLL obj1=new IsPalindromeLL();
+			obj1.addAtFirst(6);
+			obj1.addAtFirst(5);
+			obj1.addAtFirst(4);
+			obj1.addAtFirst(3);
+			obj1.addAtFirst(2);
+			obj1.addAtFirst(1);
+			obj1.printLinkedList(head);	
+			ListNode res=obj1.reverseOfLargeValOfK(head,3);
+			obj1.printLinkedList(res);
+			//ListNode res2=obj1.reveseRemaing(res,4);
+			//obj1.printLinkedList(res2);	
+	}
+}
