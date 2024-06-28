@@ -1,0 +1,154 @@
+class DoubleLinkList{
+	public static class ListNode{
+		int val;
+		ListNode next;
+		public ListNode(int data){
+			this.val=data;
+			this.next=null;
+		}
+	}
+	public static ListNode head;
+	public static ListNode tail;
+	public static int size;
+	//public  int sum=0;
+	void addAtFirst(int data){
+		ListNode newNode=new ListNode(data);
+		size++;
+		if(head==null){
+			head=newNode;
+			return;
+		}
+		//Node temp=head;
+		newNode.next=head;
+		head=newNode;
+	}
+	void printLinkedList(ListNode head){
+		System.out.print("\nRequired LL----->:  ");
+		/*if(size==0){
+			System.out.println("  length of LL  Zero");
+			return;
+		}*/
+		ListNode temp=head;
+		if(head==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		while(temp!=null){
+			System.out.print(temp.val+"-> ");
+			temp=temp.next;
+		}
+		System.out.println("\n");	
+	}
+	int sumOfLinkListList(ListNode head){
+		if(head==null){
+			return 0;
+		}
+		int sum=0;
+		ListNode temp=head;
+		while(temp!=null){
+			sum=sum*10+temp.val;
+			temp=temp.next;
+		}
+		return sum;
+	}
+	ListNode reverseLL(ListNode head){
+		if(head==null||head.next==null){
+			return head;
+		}
+		ListNode prev=null;
+		ListNode curr=head;
+		ListNode nxt;
+		while(curr!=null){
+			nxt=curr.next;
+			curr.next=prev;
+			prev=curr;
+			curr=nxt;
+		}
+		return prev;
+	}
+	/*ListNode doubleLL(ListNode head){
+		System.out.println("InDouble-2->");
+	            //	printLinkedList(head);
+		ListNode res=new ListNode(99);
+		ListNode res2=res;
+		if(sum==0){
+			ListNode newNode=new ListNode(0);
+			res2.next=newNode;
+			res2=res2.next;	
+		}
+		else{
+			while(sum>0){
+				ListNode newNode=new ListNode(sum%10);
+				res2.next=newNode;
+				res2=newNode;
+				sum=sum/10;
+				if(sum==0){
+					break;
+				}
+			}
+		}
+		ListNode ans=reverseLL(res.next);
+		return  curr1;
+	}*/
+	ListNode doubleLL_M2(ListNode head){
+		System.out.println("InDouble-2->");
+		if(head==null){
+			ListNode newNode=new ListNode(0);
+			return newNode;
+		}
+	            	ListNode tem1=head;
+		ListNode curr1=reverseLL(tem1);
+		//printLinkedList(curr1);	
+		int sum=0;
+		int carry=0;
+		ListNode newNode=new ListNode(111);
+		ListNode temp=newNode;
+		while(curr1!=null){
+			sum=(carry+(curr1.val)*2);
+			int data=sum%10;
+			carry=sum/10;
+			ListNode newN=new ListNode(data);
+			temp.next=	newN;
+			temp=newN;
+			curr1=curr1.next;
+		}
+		while(carry!=0){
+			int data=carry%10;
+			ListNode newN=new ListNode(data);
+			temp.next=	newN;
+			temp=newN;
+			carry=carry/10;
+		}
+		ListNode reso=reverseLL(newNode.next);
+		return  reso;
+	}
+	public static void main(String args[]){
+		DoubleLinkList obj1=new DoubleLinkList();
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(5);
+		obj1.addAtFirst(5);
+		obj1.addAtFirst(2);
+		obj1.addAtFirst(4);
+		obj1.addAtFirst(5);
+		obj1.addAtFirst(4);
+		obj1.addAtFirst(3);
+		//3,4,5,4,2,5,5,9,9,9]
+		// obj1.printLinkedList(head);
+		ListNode res2=obj1.doubleLL_M2(head);
+		 obj1.printLinkedList(res2);
+	}
+}
+//obj1.printLinkedList(head);
+		 //int sum=obj1.sumOfLinkListList(head);
+		//System.out.println("\nDouble res sum-->"+sum);	
+		//ListNode res=obj1.reverseLL(head);	
+	            	//obj1.printLinkedList(head);
+		//System.out.println("\nDouble res");
+		/*obj1.addAtFirst(9);
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(9);
+		obj1.addAtFirst(5);
+		obj1.addAtFirst(5);
+		obj1.addAtFirst(2);*/
