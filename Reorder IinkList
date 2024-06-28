@@ -1,0 +1,94 @@
+class Add2LinkList{
+	public static class ListNode{
+		int val;
+		ListNode next;
+		public ListNode(int data){
+			this.val=data;
+			this.next=null;
+		}
+	}
+	public static ListNode head;
+	public static ListNode tail;
+	public static int size;
+	//public  int sum=0;
+	void addAtFirst(int data){
+		ListNode newNode=new ListNode(data);
+		size++;
+		if(head==null){
+			head=newNode;
+			return;
+		}
+		//Node temp=head;
+		newNode.next=head;
+		head=newNode;
+	}
+	void printLinkedList(ListNode head){
+		System.out.print("\nLL->     ");
+		ListNode temp=head;
+		if(temp==null){
+			System.out.print("\n Empty LinkList.....");
+			return;
+		}
+		while(temp!=null){
+			System.out.print(temp.val+"-> ");
+			temp=temp.next;
+		}
+		System.out.println("\n");	
+	}
+	ListNode reorderLL(ListNode head){
+		if(head==null||head.next==null||head.next.next==null){
+			return head;
+		}
+		ListNode temp=head;
+		ListNode slow=head;
+		ListNode first=head;
+		ListNode fast=head;
+		while(fast!=null&&fast.next!=null){
+			slow=slow.next;
+			fast=fast.next.next;
+		}
+		//slow became mid
+		//System.out.println("mid-->"+slow.val);
+		ListNode curr=slow.next;
+		slow.next=null;
+		ListNode prev=null;
+		ListNode nxt;
+		while(curr!=null){
+			nxt=curr.next;
+			curr.next=prev;
+			prev=curr;
+			curr=nxt;
+		}
+		ListNode fourth=prev;
+
+	                  //printLinkedList(prev);
+		//printLinkedList(temp);
+		System.out.println("start data-->"+first.val);
+		System.out.println("end data-->"+fourth.val)
+		ListNode second;
+		ListNode third;
+		while(fourth!=null){
+			second=first.next;
+			first.next=fourth;
+			third=fourth.next;
+			fourth.next=second;
+			first=second;
+			fourth=third;
+		}
+		printLinkedList(temp);
+		return temp;
+		
+	}
+	public static void main(String args[]){
+		Add2LinkList obj1=new Add2LinkList();
+		/*obj1.addAtFirst(7);
+		obj1.addAtFirst(6);
+		obj1.addAtFirst(5);
+		obj1.addAtFirst(4);
+		obj1.addAtFirst(3);*/
+		//obj1.addAtFirst(2);
+		obj1.addAtFirst(1);
+		ListNode aswin=obj1.reorderLL(head);
+		obj1.printLinkedList(aswin);
+	}
+}
