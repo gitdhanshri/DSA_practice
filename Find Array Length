@@ -1,0 +1,17 @@
+class ArrayLength{
+	int lengthofArray(int[] arr){
+		System.out.println(arr.length);
+		int length=0;
+		for(int x:arr){
+			System.out.print(x+"   ");
+			length++;
+		}	
+		System.out.println("\nLength of Array-->"+length);
+		return length;
+	}
+	public static void main(String args[]){
+		ArrayLength obj1=new ArrayLength();
+		int[] arr={1,2,3,4,5,6,7,8};
+		obj1.lengthofArray(arr);
+	}
+}
