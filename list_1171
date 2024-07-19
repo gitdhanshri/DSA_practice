@@ -1,0 +1,93 @@
+/*
+1171. Remove Zero Sum Consecutive Nodes from Linked List
+
+*/
+
+
+//*Given the head of a linked list, we repeatedly delete consecutive sequences of nodes that sum to 0 until there are no such sequences.
+
+After doing so, return the head of the final linked list.  You may return any such answer.
+
+ 
+
+(Note that in the examples below, all sequences are serializations of ListNode objects.)
+
+Example 1:
+
+Input: head = [1,2,-3,3,1]
+Output: [3,1]
+Note: The answer [1,2,1] would also be accepted.
+**/
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    ListNode  addAtLAst(ListNode head1,int data){
+		ListNode newNode=new ListNode(data);
+		if(head1==null){
+			head1=newNode;
+			return head1;
+		}
+		ListNode temp=head1;
+		while(temp.next!=null){
+			temp=temp.next;
+		}
+		temp.next=newNode;
+		newNode.next=null;
+		return head1;
+	}
+    public ListNode removeZeroSumSublists(ListNode head) {
+         if(head==null){
+				return null;
+			}
+			ListNode temp=head;
+			int size=0;
+			while(temp!=null){
+				size++;
+				temp=temp.next;
+			}
+			 temp=head;
+			int[] arr=new int[size];
+			for(int i=0;i<arr.length;i++){
+				arr[i]=temp.val;
+				temp=temp.next;
+			}
+			temp=head;
+			int sum=0;
+			for(int i=0;i<arr.length;i++){
+				for(int j=0;j<arr.length-i;j++){
+					int k=i;
+					int f=i;
+					while(k<arr.length-j){
+						sum=sum+arr[k];
+						k++;
+					}
+					if(sum==0){
+						while(f<arr.length-j){
+							arr[f]=0;
+							f++;	
+							
+						}
+					}
+					sum=0;		
+				}
+			}
+			ListNode  tempary=new ListNode(101);
+			int idx=0;
+			  while(idx<arr.length){
+				          if(arr[idx]!=0){
+					addAtLAst(tempary,arr[idx]);
+				            }
+				 idx++;
+              }
+        	return tempary.next;
+    }
+}
