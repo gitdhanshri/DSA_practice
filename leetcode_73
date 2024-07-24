@@ -1,0 +1,71 @@
+import java.util.*;
+class SpiralMatrix_2{
+	List <Integer> count_Where_zero_present(int[][] matrix){
+		List <Integer> zero_pos=new ArrayList<>();
+		int rows=matrix.length;
+		int colm=matrix[0].length;
+		int rS=0,rE=rows,cS=0,cE=colm;
+		while(rS<rE&&cS<cE){
+			for(int col=cS;col<cE;col++){
+				if(matrix[rS][col]==0){
+					zero_pos.add(rS*10+col);
+				}
+			}
+			rS++;
+			
+		}
+		return zero_pos;
+	}
+	void makeMatrixToZero(int[][] matrix){
+		List <Integer> zero_pos=count_Where_zero_present( matrix);
+		printArrayList(zero_pos);
+		int row=0,col=0;
+		int rS=0,rE=matrix.length,cS=0,cE=matrix[0].length;
+		int idx=0;
+		int size=zero_pos.size();
+		while(idx<size){
+			row=zero_pos.get(idx)/10;
+			col=zero_pos.get(idx)%10;
+			for(int r=0;r<rE;r++){
+				matrix[r][col]=0;
+			}
+			for(int c=0;c<cE;c++){
+				matrix[row][c]=0;
+			}
+			// zero_pos.remove();  
+			//System.out.println("Code run till now Successfull-->"+idx);
+			idx++;
+			//break;
+		}
+		printMatrix(matrix);
+		
+	}
+	void printArrayList(List <Integer> zero_pos ){
+		for(int i = 0; i < zero_pos.size(); i++) {   
+		    System.out.print(zero_pos.get(i)+"  ");
+		}
+		System.out.println();
+	}
+	void printMatrix(int[][] arr){
+		for(int i=0;i<arr.length;i++){
+			System.out.print("[");
+			for(int j=0;j<arr[0].length;j++){
+				System.out.print(arr[i][j]+"  ");
+			}
+			System.out.print("]\n");
+		}
+	}
+	void printArray(int[] arr){
+		for(int i=0;i<arr.length;i++){
+			System.out.print(arr[i]+" ");
+		}
+		System.out.print("\n");
+	}
+	public static void main(String args[]){
+		SpiralMatrix_2 obj1=new SpiralMatrix_2();
+		int matrix[][] = {{1,1,0},{1,1,1},{0,1,1}};
+		//int[][] arr=obj1.returnArray(1);
+		//obj1.count_Where_zero_present(matrix);
+		obj1.makeMatrixToZero(matrix);
+	}
+}
