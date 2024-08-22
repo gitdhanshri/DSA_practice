@@ -1,0 +1,39 @@
+def repeatedStringMatch(self, a, b):
+        if b in a:
+            return 1
+        count = 1
+        res = a
+        while len(a) < len(b):
+            a += res
+            count += 1
+        if b in a:
+            return count
+        a += res
+        count += 1
+        if b in a:
+            return count
+        return -1
+
+def fun2(a, b):
+    if b in a:
+        print("First if loop")
+        return 1
+    else:
+        count = 1
+        res = a
+        while len(a) < len(b):
+            a += res
+            count += 1
+        if b in a:
+            return count
+        a += res
+        count += 1
+        if b in a:
+            return count
+        return -1
+    return -1
+
+# Example usage
+a = "abc"
+b = "cabcabca"
+print(fun2(a, b))
