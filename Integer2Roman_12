@@ -1,0 +1,81 @@
+def int_Roman(num):
+	#345	300+40+5
+		string_res="";
+		mutiplier=1;
+		divisor=1000;
+		quotient=0;
+		if(num>=1000):
+			quotient=int(num//1000);
+			num=num%1000
+			print(" 1: Quient-->",quotient)
+		while(quotient>0):
+			string_res+='M';
+			quotient-=1
+		if(num>=100):
+			quotient=int(num//100);
+			print("2: Quient-->",quotient)
+			if(quotient==4):
+				string_res+='CD';
+			elif(quotient==5):
+				string_res+='D';
+			elif(quotient==9):
+				string_res+='CM';
+			elif(quotient<5):
+				while(quotient>0):
+					string_res+='C';
+					quotient-=1
+			elif(quotient>5):
+				quotient-=5;
+				string_res+='D';
+				while(quotient>0):
+					string_res+='C';
+					quotient-=1
+			num=num%100
+		print("Num Value---->",num)
+		if(num>=10):
+			quotient=int(num//10);
+			print("3: Quient-->",quotient)
+			if(quotient==4):
+				string_res+='IV';
+			if(quotient==5):
+				string_res+='V';
+			elif(quotient==9):
+				string_res+='IX';
+			elif(quotient<5):
+				while(quotient>0):
+					string_res+='I';
+					quotient-=1
+			elif(quotient>5):
+				quotient-=5;
+				string_res+='V';
+				while(quotient>0):
+					string_res+='I';
+					quotient-=1
+			num=num%10
+			print(" 3: Num Value---->",num)
+		print("Final Answer--->",string_res);	
+		if(num>=1):
+			print("4: Quient-->",num)
+			if(num==4):
+				string_res+='IV';
+			if(num==5):
+				string_res+='V';
+			elif(num==9):
+				string_res+='IX';
+			elif(num<5):
+				while(num>0):
+					string_res+='I';
+					num-=1
+			elif(num>5):
+				num-=5;
+				string_res+='V';
+				while(num>0):
+					string_res+='I';
+					num-=1
+
+			print(" 4: Num Value---->",num)
+		print("Final Answer--->",string_res);		
+		
+d={"1":"I","2":"II","3":"III","4":"IV","5":"V","6":"VI","7":"VII","8":"VIII","9":"IX","10":"X","50":"L","40":"XL","90":"XC","100":"C","400":"CD","500":"D","900":"CM","1000":"M"}
+num=3456;
+int_Roman(num)
