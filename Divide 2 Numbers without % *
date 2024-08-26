@@ -1,0 +1,41 @@
+def divide2_Numbers(dividend, divisor):
+    dividend = int(dividend)
+    divisor = int(divisor)
+    divdnd = [dividend]
+    quotient = 0
+    bool_val = False
+    
+    if dividend < 0 or divisor < 0:
+        bool_val = True
+        if dividend < 0:
+            dividend = abs(dividend)
+        elif divisor < 0:
+            divisor = abs(divisor)
+    elif dividend < 0 or divisor < 0:
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+    
+    print(divdnd[0])
+    
+    if divisor == 1:
+        print("1 Divisor is one")
+        return dividend
+    
+    double_divisor = divisor + divisor + divisor + divisor + divisor
+    
+    while divdnd[0] >= divisor:
+        if divdnd[0] >= double_divisor:
+            quotient += 5
+            divdnd[0] -= double_divisor
+        else:
+            quotient += 1
+            divdnd[0] -= divisor
+        print("2 Dhanshri.......")
+    
+    if bool_val:
+        print("3Quotient--->", -quotient)
+        return -quotient
+    else:
+        print(" 4 Quotient--->", quotient)
+        return quotient
+divide2_Numbers(-2147483648,-1)
