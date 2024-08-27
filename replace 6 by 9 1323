@@ -1,0 +1,24 @@
+def returnNumber(l):
+	i=0
+	res=0;
+	while(i<len(l)):
+		res=res*10+int(l[i])
+		i+=1
+	print(res)
+	return res
+def repalce(num):
+	num=str(num)
+	#print("Num Val-->",num)s
+	l=list(num)
+	print(l)
+	max_Number=0
+	for i in range(len(l)):
+		l_original=l[i]
+		l[i]=9
+		res=returnNumber(l);
+		max_Number=max(res,max_Number);
+		print("Till Max number--->",max_Number);
+		l[i]=l_original
+	
+l=9996
+repalce(l);
