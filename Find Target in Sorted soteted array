@@ -1,0 +1,65 @@
+def bianry_Search_increasing(start,end,target ,arr):
+	print("1 :start point --->",start)
+	print("2 :end point ------>",end);
+	while(start<=end):
+		mid=(start+end)/2
+		mid=int(mid)
+		print("mid index-->",mid)
+		if(arr[mid]==target):
+			print("Incresing index of found Element",mid)
+			return True
+		elif(arr[mid]>target):
+			end=mid-1
+		else:
+			start=mid+1
+	return False
+def bianry_Search_decrasing(start,end,target ,arr):
+	print("2: start point --->",start)
+	print("2: end point ------>",end);
+	while(start<=end):
+		mid=(start+end)/2
+		mid=int(mid)
+		print("mid index-->",mid)
+		if(arr[mid]==target):
+			print(" Decreasing index of found Element",mid)
+			return True
+		elif(arr[mid]<target):
+			start=mid+1
+		else:
+			end=mid-1
+			
+	return False
+def search_in_Array(arr,target):
+	i=0;
+	pin_start=0
+	pin_end=0
+	break_point=0
+	while(i<len(arr)-1):
+		if(arr[i]>arr[i+1]):
+			break_point=i
+			break
+		else:
+			i+=1
+	pin_start=break_point+1
+	pin_end=break_point
+	'''print("break point-------->",break_point)
+	print("pin start point --->",pin_start)
+	print("pin end point ------>",pin_end);'''
+	boolval=bianry_Search_decrasing(0,pin_end,target,arr)
+	print("Is Element is present i First half---: ",boolval);
+	if boolval:
+		print("Found in first half--->")
+		print("result 1--:",boolval)
+		return True
+	else:
+		print("Found in Second  half--->")
+		boolval=bianry_Search_increasing(pin_start,len(arr)-1,target,arr)
+		print("result 2--:",boolval)
+		return boolval
+	    
+#arr=[1,0,1,1,1]
+
+#arr=[2,2,2,3,2,2,2]
+arr=[2,5,6,0,0,1,2]
+arr=[2,5,6,0,0,1,2]
+search_in_Array(arr,0)
