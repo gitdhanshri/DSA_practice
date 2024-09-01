@@ -1,0 +1,12 @@
+s=str(num)
+	print("In form Of String" ,s)
+	s=list(s)
+	s.sort()
+	num1=s[0]+s[2]
+	num2=s[1]+s[3]
+	print(s)
+	print("In form of list -.",s)
+	print("Substring 1--:>:",num1)
+	print("Substring 2--:>:",num2)
+	sum=int(num1)+int(num2)
+	print("Sum is Equal to--->:",sum)
