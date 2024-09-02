@@ -1,0 +1,21 @@
+class Solution(object):
+    def findMin(self, arr):
+       	i=0
+        pin_start=0
+        pin_end=0
+        break_point=0
+        bool_val=False
+        while(i<len(arr)-1):
+            if(arr[i]>arr[i+1]):
+                break_point=i
+                bool_val=True
+                break
+            else:
+                i+=1
+        pin_end=break_point
+        if bool_val==False:
+            pin_start=break_point
+        else:
+            pin_start=break_point+1    
+        return arr[pin_start]
+        
