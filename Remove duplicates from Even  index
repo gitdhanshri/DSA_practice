@@ -1,0 +1,25 @@
+def makeArray_Beautiful(nums):
+	print(nums)
+	if nums==[]: 
+		return True
+	i=0
+	count=0
+	#nums.sort()
+	while(i<len(nums)-1):
+		if i%2==0 and  nums[i]==nums[i+1]:
+			print("element-->: ",nums[i],"& ",nums[i+1])
+			nums.remove(nums[i])
+			count+=1
+		else:
+			i+=1
+	
+	if len(nums)%2==1:
+		print("Last deleted-->",nums[len(nums)-1])
+		nums.remove(nums[len(nums)-1])
+		count+=1
+	print(nums)
+	print("Number of deleted Elements--->",count)
+	return count
+nums = [1,1,2,2,3,3,4,4,4]
+nums1=[0,1,5,4,2,4,7,2,3,0,3,0,0,9,7,5,9,4,3,9,9,2,1,6,3,1,0,7,6,6,6,0,1,7,1,9,4,9,3,3,4,5,0,3,8,7,1,8,4,5]
+makeArray_Beautiful(nums1)
