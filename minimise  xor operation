@@ -1,0 +1,23 @@
+class Solution(object):
+    def minimizeXor(self, num1, num2):
+        set_bit=0
+        n=num2
+        while(n):
+            n = n & n-1
+            set_bit+=1
+        res = ['0'] * max(len(bin(num1)[2:]), set_bit) # Ensure res is large enough         
+        first_num = list(bin(num1)[2:].zfill(len(res))) # Pad with zeros to match length 
+        for i in range(len(res)):
+            if(set_bit>0 and first_num[i]=='1'):
+                res[i]='1'
+                set_bit-=1
+        # Set remaining bits if any 
+        for i in range(len(res)-1, -1, -1): 
+            if set_bit > 0 and res[i] == '0': 
+                res[i] = '1' 
+                set_bit -= 1 
+        ans = int("".join(res), 2) 
+        return ans
+        
+      
+        
