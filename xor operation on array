@@ -1,0 +1,17 @@
+class Solution(object):
+    def xorAllNums(self, nums1, nums2):
+        xor_num1=0
+        xor_num2=0
+        for i in range(len(nums1)):
+            xor_num1^=nums1[i]
+        for i in range(len(nums2)):
+            xor_num2^=nums2[i]
+        if( len(nums1)%2 == 0  and len(nums2)%2 == 0 ):
+            return 0
+        elif( len(nums1)%2 == 0):
+            return xor_num1
+        elif( len(nums2)%2 == 0):
+            return xor_num2
+        else:
+            return xor_num1 ^ xor_num2
+        
