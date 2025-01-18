@@ -1,0 +1,30 @@
+class Solution(object):
+    def primePalindrome(self, n):
+        if n in [2,3,5,7]:
+            return n
+        if n <= 1:
+            return 2  # The smallest prime number
+        if n <= 2:
+            return 2  # The smallest prime palindrome number
+        if n <= 5:
+            return 5  # The next smallest prime palindrome number is 5
+        if n <= 7:
+            return 7  # The next smallest prime palindrome number is 7
+        if 8 <= n <= 11:
+            return 11  # Handle the special case for 8, 9, 10, and 11
+        for x in range(1, 100000):  # Limiting the range
+            s = str(x)
+            y = int(s + s[::-1])  # Generate even-length palindromes
+            if y >= n and self.is_prime(y):
+                return y
+            y = int(s + s[-2::-1])  # Generate odd-length palindromes
+            if y >= n and self.is_prime(y):
+                return y
+    
+    def is_prime(self, number):
+        if number < 2:
+            return False
+        for i in range(2, int(number ** 0.5) + 1):
+            if number % i == 0:
+                return False
+        return True
