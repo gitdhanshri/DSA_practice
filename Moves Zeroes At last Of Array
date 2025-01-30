@@ -1,0 +1,7 @@
+def moveZeroesAtLast(self,arr):
+  nonzero_index=0
+  for current in range(len(arr)):
+      if(nums[curr]!=0):
+          nums[i],nums[curr]=nums[curr],nums[i]
+          i+=1
+  return arr
