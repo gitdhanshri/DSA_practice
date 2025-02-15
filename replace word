@@ -1,0 +1,30 @@
+class Solution{
+	static String replaceWord(String str){
+		String finalstr="";
+		String word="";
+		int wordCount=0;
+		for(int i=0;i<str.length();i++){
+			if(str.charAt(i)!='.'){
+				word+=str.charAt(i);
+			}else{
+				if(wordCount%2==0){
+					finalstr+=word+".";
+				}else{
+					finalstr+="abc"+".";
+				}
+				word="";
+				wordCount+=1;
+			}
+		}
+		System.out.println("Final String-->"+finalstr);
+		return finalstr;
+	}
+	public static void main(String args[]){
+		Solution obj=new Solution();
+		String s="i.like.this.program.very.much";
+		replaceWord(s);
+		 	
+	}
+}
+// expected output:
+//i.abc.this.abc.very.abc
