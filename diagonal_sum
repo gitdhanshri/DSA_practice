@@ -1,0 +1,36 @@
+def sumOfDiagonal(mat):
+	mat_lines=mat.strip().split('\n')
+	mat=mat_lines
+	#print(mat)
+	for i in range(len(mat)):
+		mat[i]=list(map(int,mat[i].split()))
+	print(mat)
+	sum_primary=0
+	sum_secondary=0
+	n=len(mat)
+	#first diagonal Sum
+	j=0
+	for i in range(n):
+		sum_primary+=mat[i][i]
+		sum_secondary+=mat[i][n-1-i]
+	print("First Sum->",sum_primary)
+	print("Second Sum-->",sum_secondary)
+	total_sum=sum_primary+sum_secondary
+	print("Fist total Sum-->",total_sum)
+	if n%2==1:
+		total_sum-=mat[n//2][n//2]
+	#print(total_sum)
+	return total_sum
+#s="1 2 3 4\n5 6 7 8\n9 10 11 12\n13 14 15 16"
+#sumOfDiagonal(s)
+#for taking input
+if __name__ ==  '__main__':
+	n=int(input())
+	lines=[]
+	for _ in range(n):
+		lines.append(input())
+	#print(lines)
+	s='\n'.join(lines)
+	result=sumOfDiagonal(s)
+	print(result)
+	
