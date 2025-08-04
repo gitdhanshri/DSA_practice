@@ -1,0 +1,19 @@
+def divBy10(arr):
+	last_digit = [str(num%10) for num in arr]
+	formed_number=int(''.join(last_digit))
+	if formed_number%10 == 0:
+		print("Yes")
+	else:
+		print("No")
+def divBy10_m2(arr):
+	result=0
+	for num in arr:
+		result = result*10 + (num%10)
+	
+	if result%10 == 0:
+		print("Yes")
+	else:
+		print("No")
+N=int(input("Enter array size"))
+arr=list(map(int,input().strip().split()))
+divBy10_m2(arr)
